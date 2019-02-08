@@ -10,36 +10,34 @@
 
 <div class="page-container clearfix">
 
-    <div class="top-banner"><div class="banner-text">Blog about nothing...</div></div>
+    <div class="top-banner">
+        <div class="banner-text">Blog about nothing...</div>
+
+        <div class="admin-buttons">
+            <a th:href="@{/addPost}">Add post</a>
+            <a>Logout</a>
+        </div>
+
+    </div>
 
     <div class="navbar">
 
     </div>
 
-    <div class="blog-content">
+    <div class="blog-content" th:each="blogPost : ${blogPosts}">
 
         <div class="blogpost">
-            <div class="title">Tytuł ąęśćógsdg ewr </div>
-            <div class="post-info">Created by User || 07-02-2019</div>
-            <div class="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-            <div class="post-info">Comments (2)</div>
-            <hr>
-        </div>
+                <div class="title">
+                    <a th:href="@{'/showPost/' + ${blogPost.id}}"><span th:text="${blogPost.title}"></span></a>
+                    <form method="POST" th:action="@{/editPost}">
+                        <input type="hidden" name="id" th:value="${blogPost.id}">
+                        <input type="submit" id="edit-btn">
+                    </form>
+                    <a><img th:src="@{../img/delete.png}"></a>
 
-        <div class="blogpost">
-            <div class="title">Tytuł ąęśćógsdg ewr </div>
-            <div class="post-info">Created by User || 07-02-2019</div>
-            <div class="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                </div>
+            <div class="post-info" th:text="'Created by User || ' + ${blogPost.creationTime.toLocalDate()}">Created by User || 07-02-2019</div>
+            <div class="post-text" th:text="${blogPost.postText}">Blog Post Text</div>
             <div class="post-info">Comments (2)</div>
             <hr>
         </div>
@@ -51,5 +49,6 @@
 
 </div>
 
+<script th:src="@{../js/modal.js}"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ public class BlogPostConverter {
     
     public BlogPostDto convertToDto(BlogPost blogPost){
         BlogPostDto blogPostDto = new BlogPostDto();
+        blogPostDto.setId(blogPost.getId());
         blogPostDto.setAuthor(blogPost.getAuthor());
         blogPostDto.setCommentsList(blogPost.getCommentsList());
         blogPostDto.setCreationTime(blogPost.getCreationTime());
@@ -19,6 +20,7 @@ public class BlogPostConverter {
 
     public BlogPost convertToEntity(BlogPostDto blogPostDto){
         BlogPost blogPost = new BlogPost();
+        blogPost.setId(blogPostDto.getId());
         blogPost.setAuthor(blogPostDto.getAuthor());
         blogPost.setCommentsList(blogPostDto.getCommentsList());
         blogPost.setCreationTime(blogPostDto.getCreationTime());

@@ -16,7 +16,7 @@ public class BlogPost {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "AUTHOR_ID")
     private User author;
-    @OneToMany(mappedBy = "blogPost")
+    @OneToMany(mappedBy = "blogPost", cascade = CascadeType.ALL)
     private List<Comment> commentsList;
 
     public Long getId() {

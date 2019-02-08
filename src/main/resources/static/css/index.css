@@ -17,12 +17,45 @@ body {
     font-family: 'Indie Flower', cursive;
     color: #361202;
     font-size: 2.4em;
+    position: relative;
+}
+
+.admin-buttons {
+    position: absolute;
+    right: 33px;
+    top: 33px;
+    padding: 0px;
+}
+
+.admin-buttons a {
+    background-color: #F9EBCF;
+    border: 1px solid #361202;
+    border-radius: 2px;
+    color: #361202;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 5px;
+    display: block;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.admin-buttons a:hover {
+    background-color: #361202;
+    border: 1px solid #F9EBCF;
+    color: #F9EBCF;
 }
 
 .navbar {
     height: 30px;
     width: 100%;
     background-color: yellow;
+}
+
+.blogpost a {
+    text-decoration: none;
+    color: #000000;
 }
 
 .banner-text {
@@ -32,7 +65,7 @@ body {
 
 .blog-content {
     float: left;
-    width: 80%;
+    width: 75%;
     padding: 15px;
     box-sizing: border-box;
     font-family: 'Charm', sans-serif;
@@ -59,7 +92,7 @@ body {
 
 .sidebar {
     float: left;
-    width: 20%;
+    width: 25%;
 }
 
 .clearfix {
@@ -77,4 +110,14 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+#edit-btn {
+    background-image: url('../img/edit.png');
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    border: 0px;
+    text-indent: -999999px;
 }

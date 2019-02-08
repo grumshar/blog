@@ -6,6 +6,8 @@ import pl.dcielicki.blog.model.BlogPost;
 import pl.dcielicki.blog.repository.BlogPostRepository;
 import pl.dcielicki.blog.service.BlogPostService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +32,17 @@ public class BlogPostServiceImpl implements BlogPostService {
             throw new RuntimeException();
         }
         return blogPost.get();
+    }
+
+    @Override
+    public List<BlogPost> getAllPosts() {
+        List<BlogPost> list = new ArrayList<>();
+        blogPostRepository.findAll().forEach(post -> list.add(post));
+        return list;
+    }
+
+    @Override
+    public void delete(BlogPost blogPost) {
+        blogPostRepository.delete(blogPost);
     }
 }

@@ -2,10 +2,8 @@ package pl.dcielicki.blog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.dcielicki.blog.converter.BlogPostConverter;
 import pl.dcielicki.blog.dto.BlogPostDto;
 import pl.dcielicki.blog.model.BlogPost;
@@ -27,9 +25,20 @@ public class PostController {
 
     @GetMapping("/addPost")
     public String addPost(Model model) {
+        if(model.containsAttribute("blogPostToCreate")){
+            return "postForm";
+        }
         BlogPostDto blogPostDto = new BlogPostDto();
         model.addAttribute("blogPostToCreate", blogPostDto);
-        return "addPost";
+        return "postForm";
+    }
+
+    @PostMapping("/editPost")
+    public String editPost(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        BlogPost blogPost = blogPostService.getBlogPostById(id);
+        BlogPostDto blogPostDto = blogPostConverter.convertToDto(blogPost);
+        redirectAttributes.addFlashAttribute("blogPostToCreate", blogPostDto);
+        return "redirect:/addPost";
     }
 
     @PostMapping("/savePost")

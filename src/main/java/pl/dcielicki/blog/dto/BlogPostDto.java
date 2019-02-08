@@ -8,11 +8,20 @@ import java.util.List;
 
 public class BlogPostDto {
 
+    private Long id;
     private String title;
     private LocalDateTime creationTime;
     private String postText;
     private User author;
     private List<Comment> commentsList;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
