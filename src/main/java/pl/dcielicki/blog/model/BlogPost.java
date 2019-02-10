@@ -12,6 +12,7 @@ public class BlogPost {
     private Long id;
     private String title;
     private LocalDateTime creationTime;
+    @Lob
     private String postText;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "AUTHOR_ID")
@@ -65,5 +66,17 @@ public class BlogPost {
 
     public void setCommentsList(List<Comment> commentsList) {
         this.commentsList = commentsList;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogPost{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", creationTime=" + creationTime +
+                ", postText='" + postText + '\'' +
+                ", author=" + author +
+                ", commentsList=" + commentsList +
+                '}';
     }
 }

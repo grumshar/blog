@@ -3,12 +3,12 @@ package pl.dcielicki.blog.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dcielicki.blog.model.BlogPost;
+import pl.dcielicki.blog.model.User;
 import pl.dcielicki.blog.repository.BlogPostRepository;
 import pl.dcielicki.blog.service.BlogPostService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 public class BlogPostServiceImpl implements BlogPostService {
@@ -38,11 +38,30 @@ public class BlogPostServiceImpl implements BlogPostService {
     public List<BlogPost> getAllPosts() {
         List<BlogPost> list = new ArrayList<>();
         blogPostRepository.findAll().forEach(post -> list.add(post));
+        list.sort(Comparator.comparing(BlogPost::getCreationTime).reversed());
         return list;
     }
 
     @Override
     public void delete(BlogPost blogPost) {
         blogPostRepository.delete(blogPost);
+    }
+
+    @Override
+    public void setPostCreationTime(BlogPost blogPost){
+        if(!isInDatabase(blogPost)){
+            blogPost.setCreationTime(LocalDateTime.now());
+        }
+    }
+
+    @Override
+    public void setPostAuthor(BlogPost blogPost){
+        if(!isInDatabase(blogPost)){
+            blogPost.setAuthor(new User());
+        }
+    }
+
+    private boolean isInDatabase(BlogPost blogPost){
+        return blogPost.getId() != null;
     }
 }

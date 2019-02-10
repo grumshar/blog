@@ -28,7 +28,8 @@
 
         <div class="blogpost">
                 <div class="title">
-                    <a th:href="@{'/showPost/' + ${blogPost.id}}"><span th:text="${blogPost.title}"></span></a>
+
+                    <a th:href="@{'/showBlogPost/' + ${blogPost.id}}"><span th:text="${blogPost.title}"></span></a>
                     <form method="POST" th:action="@{/editPost}">
                         <input type="hidden" name="id" th:value="${blogPost.id}">
                         <input type="submit" id="edit-btn">

@@ -20,7 +20,7 @@
 
         <div class="blogpost">
             <div class="title" th:text="${blogPost.title}">Title</div>
-            <div class="post-info" th:text="'Created by User || ' + ${blogPost.creationTime}">Created by User || 07-02-2019</div>
+            <div class="post-info" th:text="'Created by User || ' + ${blogPost.creationTime.toLocalDate()}">Created by User || 07-02-2019</div>
             <div class="post-text" th:text="${blogPost.postText}">Blog post text</div>
             <div class="post-info">Comments (2)</div>
             <hr>

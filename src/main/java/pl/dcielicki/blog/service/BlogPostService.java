@@ -10,5 +10,7 @@ public interface BlogPostService {
     BlogPost getBlogPostById(Long id);
     List<BlogPost> getAllPosts();
     void delete(BlogPost blogPost);
+    void setPostCreationTime(BlogPost blogPost);
+    void setPostAuthor(BlogPost blogPost);
 
 }

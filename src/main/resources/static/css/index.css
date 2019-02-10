@@ -121,3 +121,41 @@ hr {
     border: 0px;
     text-indent: -999999px;
 }
+
+.form-element {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-element input[type="text"] {
+    border-radius: 2px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #361202;
+    font-family: 'Charm', sans-serif;
+}
+
+.form-element textarea {
+    border-radius: 2px;
+    width: 100%;
+    height: 350px;
+    border: 1px solid #361202;
+    resize: none;
+    font-family: 'Charm', sans-serif;
+}
+
+.button {
+    background-color: #F9EBCF;
+    border: 1px solid #361202;
+    border-radius: 2px;
+    color: #361202;
+    font-size: 17px;
+    padding: 5px;
+}
+
+.button:hover {
+    background-color: #361202;
+    border: 1px solid #F9EBCF;
+    color: #F9EBCF;
+    cursor: pointer;
+}

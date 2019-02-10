@@ -7,10 +7,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.dcielicki.blog.converter.BlogPostConverter;
 import pl.dcielicki.blog.dto.BlogPostDto;
 import pl.dcielicki.blog.model.BlogPost;
-import pl.dcielicki.blog.model.User;
 import pl.dcielicki.blog.service.BlogPostService;
-
-import java.time.LocalDateTime;
 
 @Controller
 public class PostController {
@@ -26,11 +23,11 @@ public class PostController {
     @GetMapping("/addPost")
     public String addPost(Model model) {
         if(model.containsAttribute("blogPostToCreate")){
-            return "postForm";
+            return "blogPostForm";
         }
         BlogPostDto blogPostDto = new BlogPostDto();
         model.addAttribute("blogPostToCreate", blogPostDto);
-        return "postForm";
+        return "blogPostForm";
     }
 
     @PostMapping("/editPost")
@@ -44,18 +41,18 @@ public class PostController {
     @PostMapping("/savePost")
     public String savePost(@ModelAttribute BlogPostDto blogPostDto){
         BlogPost blogPost = blogPostConverter.convertToEntity(blogPostDto);
-        blogPost.setAuthor(new User());
-        blogPost.setCreationTime(LocalDateTime.now());
+        blogPostService.setPostAuthor(blogPost);
+        blogPostService.setPostCreationTime(blogPost);
         blogPostService.save(blogPost);
-        return "redirect:/showPost/" + blogPost.getId();
+        return "redirect:/showBlogPost/" + blogPost.getId();
     }
 
-    @GetMapping("/showPost/{id}")
+    @GetMapping("/showBlogPost/{id}")
     public String showPost(@PathVariable Long id, Model model){
         BlogPost blogPost = blogPostService.getBlogPostById(id);
         BlogPostDto blogPostDto = blogPostConverter.convertToDto(blogPost);
         model.addAttribute("blogPost", blogPostDto);
-        return "showPost";
+        return "showBlogPost";
     }
 
 }

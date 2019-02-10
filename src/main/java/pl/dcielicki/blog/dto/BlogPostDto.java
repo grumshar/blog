@@ -62,4 +62,16 @@ public class BlogPostDto {
     public void setCommentsList(List<Comment> commentsList) {
         this.commentsList = commentsList;
     }
+
+    @Override
+    public String toString() {
+        return "BlogPostDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", creationTime=" + creationTime +
+                ", postText='" + postText + '\'' +
+                ", author=" + author +
+                ", commentsList=" + commentsList +
+                '}';
+    }
 }
