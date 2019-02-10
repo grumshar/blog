@@ -20,7 +20,7 @@ public class PostController {
         this.blogPostConverter = blogPostConverter;
     }
 
-    @GetMapping("/addPost")
+    @GetMapping("/addBlogPost")
     public String addPost(Model model) {
         if(model.containsAttribute("blogPostToCreate")){
             return "blogPostForm";
@@ -30,15 +30,15 @@ public class PostController {
         return "blogPostForm";
     }
 
-    @PostMapping("/editPost")
+    @PostMapping("/editBlogPost")
     public String editPost(@RequestParam Long id, RedirectAttributes redirectAttributes){
         BlogPost blogPost = blogPostService.getBlogPostById(id);
         BlogPostDto blogPostDto = blogPostConverter.convertToDto(blogPost);
         redirectAttributes.addFlashAttribute("blogPostToCreate", blogPostDto);
-        return "redirect:/addPost";
+        return "redirect:/addBlogPost";
     }
 
-    @PostMapping("/savePost")
+    @PostMapping("/saveBlogPost")
     public String savePost(@ModelAttribute BlogPostDto blogPostDto){
         BlogPost blogPost = blogPostConverter.convertToEntity(blogPostDto);
         blogPostService.setPostAuthor(blogPost);
@@ -53,6 +53,12 @@ public class PostController {
         BlogPostDto blogPostDto = blogPostConverter.convertToDto(blogPost);
         model.addAttribute("blogPost", blogPostDto);
         return "showBlogPost";
+    }
+
+    @PostMapping("/deleteBlogPost")
+    public String deletePost(@RequestParam Long id){
+        blogPostService.deletePostById(id);
+        return "redirect:/index";
     }
 
 }

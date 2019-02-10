@@ -18,7 +18,7 @@
 
     <div class="blog-content">
 
-        <form th:action="@{/savePost}" method="POST" th:object="${blogPostToCreate}">
+        <form th:action="@{/saveBlogPost}" method="POST" th:object="${blogPostToCreate}">
 
             <input type="hidden" name="id" th:field="*{id}">
             <input type="hidden" name="creationTime" th:field="*{creationTime}">

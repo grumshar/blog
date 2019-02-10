@@ -79,6 +79,18 @@ body {
     margin-bottom: 10px;
 }
 
+.title form {
+    display: inline;
+}
+
+.title form input[type="submit"],
+.title button {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: -5px;
+}
+
 .post-info {
     font-size: 12px;
     margin-bottom: 10px;
@@ -115,11 +127,30 @@ hr {
 #edit-btn {
     background-image: url('../img/edit.png');
     background-repeat: no-repeat;
-    width: 24px;
-    height: 24px;
     background-color: #FFFFFF;
     border: 0px;
     text-indent: -999999px;
+    cursor: pointer;
+    padding: 0px;
+}
+
+#delete-btn {
+    background-image: url('../img/delete.png');
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+    border: 0px;
+    text-indent: -999999px;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.delete-btn {
+    background-image: url('../img/delete.png');
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+    border: 0px;
+    text-indent: -999999px;
+    cursor: pointer;
 }
 
 .form-element {
@@ -133,6 +164,7 @@ hr {
     background: #FFFFFF;
     border: 1px solid #361202;
     font-family: 'Charm', sans-serif;
+    padding: 5px;
 }
 
 .form-element textarea {
@@ -142,6 +174,7 @@ hr {
     border: 1px solid #361202;
     resize: none;
     font-family: 'Charm', sans-serif;
+    padding: 5px;
 }
 
 .button {
@@ -159,3 +192,12 @@ hr {
     color: #F9EBCF;
     cursor: pointer;
 }
+
+.button-decision, #button-yes {
+    width: 49%;
+    height: 50px;
+    box-sizing: border-box;
+    margin: 0px;
+    position: unset;
+}
+

@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Charm&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" th:href="@{../css/index.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{../css/modal.css}">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
         <div class="banner-text">Blog about nothing...</div>
 
         <div class="admin-buttons">
-            <a th:href="@{/addPost}">Add post</a>
+            <a th:href="@{/addBlogPost}">Add post</a>
             <a>Logout</a>
         </div>
 
@@ -27,14 +28,37 @@
     <div class="blog-content" th:each="blogPost : ${blogPosts}">
 
         <div class="blogpost">
-                <div class="title">
+                <div class="title clearfix">
 
                     <a th:href="@{'/showBlogPost/' + ${blogPost.id}}"><span th:text="${blogPost.title}"></span></a>
-                    <form method="POST" th:action="@{/editPost}">
+                    <form method="POST" th:action="@{/editBlogPost}">
                         <input type="hidden" name="id" th:value="${blogPost.id}">
                         <input type="submit" id="edit-btn">
                     </form>
-                    <a><img th:src="@{../img/delete.png}"></a>
+
+                    <button class="delete-btn">Open Modal</button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p>Post Deletion</p>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you really want to delete this post?</p>
+                            </div>
+
+                            <input type="button" class="button button-decision" id="decisionNo" value="No">
+                            <form th:action="@{/deleteBlogPost}" method="POST">
+                                <input type="hidden" name="id" th:value="${blogPost.id}">
+                                <input type="submit" id="button-yes" class="button button-decision" value="Yes">
+                            </form>
+
+                        </div>
+
+                    </div>
 
                 </div>
             <div class="post-info" th:text="'Created by User || ' + ${blogPost.creationTime.toLocalDate()}">Created by User || 07-02-2019</div>

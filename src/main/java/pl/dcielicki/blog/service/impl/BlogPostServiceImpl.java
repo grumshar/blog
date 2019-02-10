@@ -48,6 +48,11 @@ public class BlogPostServiceImpl implements BlogPostService {
     }
 
     @Override
+    public void deletePostById(Long id){
+        blogPostRepository.deleteById(id);
+    }
+
+    @Override
     public void setPostCreationTime(BlogPost blogPost){
         if(!isInDatabase(blogPost)){
             blogPost.setCreationTime(LocalDateTime.now());
@@ -64,4 +69,5 @@ public class BlogPostServiceImpl implements BlogPostService {
     private boolean isInDatabase(BlogPost blogPost){
         return blogPost.getId() != null;
     }
+
 }
