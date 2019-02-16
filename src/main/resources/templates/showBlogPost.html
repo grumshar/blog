@@ -22,8 +22,28 @@
             <div class="title" th:text="${blogPost.title}">Title</div>
             <div class="post-info" th:text="'Created by User || ' + ${blogPost.creationTime.toLocalDate()}">Created by User || 07-02-2019</div>
             <div class="post-text" th:text="${blogPost.postText}">Blog post text</div>
-            <div class="post-info">Comments (2)</div>
-            <hr>
+        </div>
+
+        <div class="comment" th:object="${comment}">
+
+            <h3>Comment This Post</h3>
+
+            <form th:action="@{/saveComment}" method="POST">
+
+                <input type="hidden" name="id" th:value="${blogPost.id}">
+
+                <div class="form-element">
+                    <label for="author">Nickname</label>
+                    <input type="text" id="author" name="author" th:field="*{author}">
+                </div>
+
+                <div class="form-element">
+                    <label for="commentText">Comment Text</label>
+                    <input type="text" class="for" id="commentText" name="commentText" th:field="*{commentText}">
+                </div>
+
+                <input type="submit" value="Post Comment">
+            </form>
         </div>
 
     </div>

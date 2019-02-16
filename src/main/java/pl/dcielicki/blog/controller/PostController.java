@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.dcielicki.blog.converter.BlogPostConverter;
 import pl.dcielicki.blog.dto.BlogPostDto;
+import pl.dcielicki.blog.dto.CommentDto;
 import pl.dcielicki.blog.model.BlogPost;
 import pl.dcielicki.blog.service.BlogPostService;
 
@@ -51,7 +52,9 @@ public class PostController {
     public String showPost(@PathVariable Long id, Model model){
         BlogPost blogPost = blogPostService.getBlogPostById(id);
         BlogPostDto blogPostDto = blogPostConverter.convertToDto(blogPost);
+        CommentDto commentDto = new CommentDto();
         model.addAttribute("blogPost", blogPostDto);
+        model.addAttribute("comment", commentDto);
         return "showBlogPost";
     }
 

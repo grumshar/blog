@@ -201,3 +201,12 @@ hr {
     position: unset;
 }
 
+.comment {
+    margin: 5px;
+    padding: 10px;
+}
+
+.comment input[type="text"] {
+    border-color: #57260F;
+    box-sizing: border-box;
+}
